@@ -10,9 +10,8 @@ const app = express();
 app.use(
     cors({
       origin: [
-        "http://localhost:3001",                 
-        "https://event-planner-4ezh.onrender.com",
-        "https://events-planner-tawny.vercel.app/" 
+        "http://localhost:3001",
+        "https://events-planner-tawny.vercel.app", 
       ],
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true,
