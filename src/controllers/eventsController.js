@@ -1,9 +1,17 @@
 import Event from "../models/Events.js";
 import { eventSchema } from '../schemas/eventSchemas.js';
 
+
+
 export const createEvent = async (req, res) => {
   try {
     const validatedData = eventSchema.parse(req.body);
+
+    const existingEvent = await Event.findOne({ title: validatedData.title, category: validatedData.category });
+    if (existingEvent) {
+      return res.status(400).json({ message: "Event already exists" });
+    }
+
     const event = new Event(validatedData);
     await event.save();
     return res.status(201).json(event);
@@ -11,6 +19,7 @@ export const createEvent = async (req, res) => {
     return res.status(400).json({ message: err.message });
   }
 };
+
 
 export const updateEvent = async (req, res) => {
   try {
@@ -28,6 +37,7 @@ export const updateEvent = async (req, res) => {
   }
 };
 
+
 export const deleteEvent = async (req, res) => {
   try {
     const { id } = req.params;
@@ -42,6 +52,8 @@ export const deleteEvent = async (req, res) => {
     return res.status(400).json({ message: err.message });
   }
 };
+
+
 
 export const getAllEvents = async (req, res) => {
   try {

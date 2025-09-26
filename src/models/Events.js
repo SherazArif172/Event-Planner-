@@ -8,6 +8,8 @@ const EventSchema = new mongoose.Schema({
   category: { type: String, enum: categories, required: true },
 }, { timestamps: true });
 
+
+
 const Event = mongoose.model('Event', EventSchema);
 
 export default Event;

@@ -4,7 +4,7 @@ import express from "express";
 const eventsRouter = express.Router();
 
 eventsRouter.get("/", getAllEvents);
-eventsRouter.post("/", createEvent);
+eventsRouter.post("/create", createEvent);
 eventsRouter.put("/:id", updateEvent);
 eventsRouter.delete("/:id", deleteEvent);
 
